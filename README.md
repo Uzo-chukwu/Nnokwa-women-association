@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NNOKWA WOMEN ASSOCIATION
 
-## Getting Started
+## Local development
 
-First, run the development server:
-
-```bash
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the local URL printed by Next.js. Run `npm run build` to check the production build.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Browser regression tests
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+npm ci
+npx playwright install --only-shell chromium
+npm test
+```
 
-## Learn More
+On Linux, use `npx playwright install --with-deps --only-shell chromium` if Chromium needs system libraries. If Google Chrome is already installed, `PLAYWRIGHT_USE_SYSTEM_CHROME=1 npm test` runs against that browser. The suite builds the app and starts a dedicated production server on port 3107. It runs headless and mocks clipboard access.
 
-To learn more about Next.js, take a look at the following resources:
+Run an individual spec with `npm test -- tests/e2e/navigation.spec.ts`. Failed tests retain a trace under `test-results/`. Open a trace with `npx playwright show-trace path/to/trace.zip`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Source structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Directory | Purpose |
+| --- | --- |
+| `src/app` | App Router routes, root layout, and global design tokens |
+| `src/components/ui` | Shared UI components |
+| `src/components/layout` | Shared page layout components |
+| `src/components/home` | Homepage sections |
+| `src/data` | Local content and access functions |
+| `src/types` | Content types shared by the data and presentation layers |
+| `src/config` | Image delivery configuration |
+| `src/utils` | Shared utilities, including the Cloudinary image loader |
 
-## Deploy on Vercel
+The root layout includes the global header and footer. The global footer and `/contact` share the official email and social URLs configured in `src/data/site.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The root route has the global header, homepage hero, association introduction, core pillars, Our Work in Action, SDG commitment, leadership preview, News & Events preview, and donation section. The `/about` page introduces the association, presents its history and governance documents, and keeps its history separate from Nnokwa’s history. The `/leadership` page shares its executive data with the homepage preview. The `/our-work` and `/partnerships` pages share focus, activity, and SDG data. The `/news` listing displays published entries and shows an empty state when none are available. The `/donate` page shares the confirmed bank account and transfer card with the homepage.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`getSiteInfo()` is the current content entry point. When Sanity is integrated, map its response to `SiteInfo` at this boundary so the layout can keep the same interface. Add other content types and access functions as verified content becomes available.
+
+## Images
+
+When Cloudinary images are ready, copy `.env.example` to `.env.local`, fill in `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` with the public cloud name, and restart the development server. Set the variable before building for production.
+
+Set `NEXT_PUBLIC_CLOUDINARY_HERO_PUBLIC_ID` to the approved community photograph's public ID, including any folder path. Set `NEXT_PUBLIC_CLOUDINARY_HERO_ALT` to a short description of that photograph. The hero shows a placeholder until a cloud name and public ID are set.
+
+For the association introduction, set `NEXT_PUBLIC_CLOUDINARY_INTRO_PUBLIC_ID` and `NEXT_PUBLIC_CLOUDINARY_INTRO_ALT` for its photograph. The introduction also shows a placeholder until a cloud name and public ID are set.
+
+For each approved Our Work photograph, add an `image` object with its `publicId` and descriptive `alt` text to the corresponding activity in `src/data/work-activities.ts`. Each card shows a placeholder until its public ID and the Cloudinary cloud name are set.
+
+Update approved executive portraits and alt text in `src/data/leadership.ts`. The portrait cloud name in that file is shared by the homepage preview and Leadership page.
+
+Replace sample news entries in `src/data/news-events.ts` with approved content using `status: "published"` and the detail page `href` once that page is available. Add an optional `image` with its `publicId` and descriptive `alt` text, and an optional `date` with its `kind` and ISO date (`YYYY-MM-DD`). A future Sanity query can map approved documents to the same `NewsEntry` type.
+
+## Governance documents
+
+Registration details and the public constitution link live in `src/data/governance.ts`. The certificate preview and full-size link both use the redacted public image in `public/documents`. Keep the original certificate outside the public assets when updating that image.
+
+## Donations
+
+The association's confirmed bank transfer details live in `src/data/donations.ts` and are used on the homepage and `/donate`.
+
+Use `CloudinaryImage` from `src/components/ui/cloudinary-image.tsx` for other Cloudinary assets. Pass the public ID as `src`, descriptive `alt` text, intrinsic dimensions or `fill`, and `sizes` for responsive images.
