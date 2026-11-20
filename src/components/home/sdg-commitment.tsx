@@ -10,15 +10,15 @@ function SdgCard({ goal }: { goal: SustainableDevelopmentGoal }) {
     >
       <span aria-hidden="true" className="absolute -top-px left-5 h-0.5 w-10 bg-(--sdg-accent) lg:left-4 xl:left-5" />
       <h3>
-        <span className="mb-4 flex items-baseline gap-2 text-purple">
+        <span className="mb-4 flex items-baseline gap-2 text-accent">
           <span className="font-sans text-xs font-semibold tracking-[0.1em]">SDG</span>{" "}
           <span className="text-4xl leading-none font-semibold tabular-nums">{goal.number}</span>
         </span>{" "}
-        <span className="block text-xl leading-tight font-semibold text-charcoal lg:min-h-[2.5em] xl:text-[1.375rem]">
+        <span className="block text-xl leading-tight font-semibold text-foreground lg:min-h-[2.5em] xl:text-[1.375rem]">
           {goal.title}
         </span>
       </h3>
-      <p className="mt-2 text-base leading-relaxed text-charcoal/85">{goal.description}</p>
+      <p className="mt-2 text-base leading-relaxed text-foreground/85">{goal.description}</p>
     </li>
   );
 }
@@ -34,7 +34,7 @@ export function SdgCommitment({
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 xl:px-12 xl:py-24">
         <div className="max-w-[48rem]">
           <HomeSectionHeading id="sdg-commitment-heading" label={label} heading={heading} />
-          <p className="mt-5 max-w-[42rem] text-base leading-[1.75] text-charcoal/85 sm:text-lg">
+          <p className="mt-5 max-w-[42rem] text-base leading-[1.75] text-foreground/85 sm:text-lg">
             {description}
           </p>
         </div>

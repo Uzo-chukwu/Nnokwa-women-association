@@ -25,7 +25,7 @@ const enquiryCategories = [
 
 const container = "mx-auto max-w-7xl px-5 sm:px-8 xl:px-12";
 const heading = "text-[clamp(2rem,4vw,3rem)] leading-[1.12] font-semibold tracking-[-0.035em]";
-const textLink = "rounded-sm font-semibold text-purple underline decoration-gold underline-offset-4 hover:decoration-purple focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple";
+const textLink = "rounded-sm font-semibold text-accent underline decoration-gold underline-offset-4 hover:decoration-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
 
 export default async function ContactPage() {
   const { name, contact, socialLinks } = await getSiteInfo();
@@ -35,14 +35,14 @@ export default async function ContactPage() {
     <>
       <section aria-labelledby="contact-heading" className="border-b border-border bg-background">
         <div className={`${container} py-12 sm:py-16 xl:py-20`}>
-          <p className="mb-5 flex items-center gap-3 text-xs font-semibold tracking-[0.14em] text-purple uppercase">
+          <p className="mb-5 flex items-center gap-3 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
             <span aria-hidden="true" className="h-px w-7 bg-gold" />
             Contact Us
           </p>
-          <h1 id="contact-heading" className="text-[clamp(2.5rem,6vw,4.25rem)] leading-[1.08] font-semibold tracking-[-0.045em] text-charcoal">
+          <h1 id="contact-heading" className="text-[clamp(2.5rem,6vw,4.25rem)] leading-[1.08] font-semibold tracking-[-0.045em] text-foreground">
             Let&apos;s Connect
           </h1>
-          <p className="mt-5 max-w-[44rem] text-base leading-[1.75] text-charcoal/85 sm:text-lg">{introduction}</p>
+          <p className="mt-5 max-w-[44rem] text-base leading-[1.75] text-foreground/85 sm:text-lg">{introduction}</p>
         </div>
       </section>
 
@@ -52,15 +52,15 @@ export default async function ContactPage() {
             <h2 id="contact-information-heading" className={heading}>Contact information</h2>
             <dl className="mt-6 space-y-5 border-l-2 border-gold bg-background p-5 sm:p-7">
               <div>
-                <dt className="text-sm text-charcoal/80">Organization</dt>
+                <dt className="text-sm text-foreground/80">Organization</dt>
                 <dd className="mt-1 font-semibold">{name}</dd>
               </div>
               <div>
-                <dt className="text-sm text-charcoal/80">Location</dt>
+                <dt className="text-sm text-foreground/80">Location</dt>
                 <dd className="mt-1">{registration.location}</dd>
               </div>
               <div>
-                <dt className="text-sm text-charcoal/80">Email</dt>
+                <dt className="text-sm text-foreground/80">Email</dt>
                 <dd className="mt-1">
                   {contact.email ? (
                     <>
@@ -88,7 +88,7 @@ export default async function ContactPage() {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex min-h-12 items-center gap-2 rounded-sm border border-purple/25 px-3 py-3 text-sm font-semibold text-purple hover:border-purple hover:bg-purple/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple motion-safe:transition-colors sm:px-4"
+                      className="flex min-h-12 items-center gap-2 rounded-sm border border-accent/25 px-3 py-3 text-sm font-semibold text-accent hover:border-accent hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-safe:transition-colors sm:px-4"
                     >
                       <SocialIcon platform={platform} className="size-4 shrink-0" />
                       {platform}
@@ -105,18 +105,18 @@ export default async function ContactPage() {
         <div className={`${container} grid items-start gap-10 py-12 sm:py-16 md:grid-cols-2 lg:gap-16 xl:py-20`}>
           <section aria-labelledby="enquiry-categories-heading">
             <h2 id="enquiry-categories-heading" className={heading}>Enquiries we welcome</h2>
-            <ul className="mt-5 list-disc space-y-3 pl-5 leading-relaxed text-charcoal/85 marker:text-purple">
+            <ul className="mt-5 list-disc space-y-3 pl-5 leading-relaxed text-foreground/85 marker:text-accent">
               {enquiryCategories.map((category) => <li key={category}>{category}</li>)}
             </ul>
           </section>
 
-          <section aria-labelledby="contact-partnership-heading" className="border-t-2 border-gold bg-purple p-5 text-ivory sm:p-8">
+          <section aria-labelledby="contact-partnership-heading" className="border-t-2 border-gold bg-gold/15 p-5 text-foreground sm:p-8">
             <h2 id="contact-partnership-heading" className={heading}>Interested in Working Together?</h2>
-            <p className="mt-4 leading-relaxed text-ivory/90">
+            <p className="mt-4 leading-relaxed text-foreground/85">
               We welcome conversations with organizations, foundations and development partners interested in supporting initiatives that advance women&apos;s empowerment and sustainable community development.
             </p>
             <div className="mt-6">
-              <ActionLink href={routes.partnerships} variant="gold">Explore Partnership Opportunities</ActionLink>
+              <ActionLink href={routes.partnerships}>Explore Partnership Opportunities</ActionLink>
             </div>
           </section>
         </div>

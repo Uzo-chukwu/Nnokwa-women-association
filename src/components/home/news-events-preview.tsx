@@ -12,7 +12,7 @@ export function NewsEventsPreview() {
         <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-[48rem]">
             <HomeSectionHeading id="news-events-preview-heading" label={label} heading={heading} />
-            <p className="mt-5 max-w-[42rem] text-base leading-[1.75] text-charcoal/85 sm:text-lg">
+            <p className="mt-5 max-w-[42rem] text-base leading-[1.75] text-foreground/85 sm:text-lg">
               {description}
             </p>
           </div>

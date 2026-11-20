@@ -10,8 +10,8 @@ export function AssociationPhoto({
   className?: string;
 }) {
   return (
-    <div className={`border border-border bg-ivory p-3 sm:p-4 ${className}`}>
-      <div className="relative isolate grid aspect-[5/4] place-items-center bg-purple/5">
+    <div className={`border border-border bg-background p-3 sm:p-4 ${className}`}>
+      <div className="relative isolate grid aspect-[5/4] place-items-center bg-accent/5">
         {cloudinaryConfig.cloudName && image.publicId ? (
           <CloudinaryImage
             src={image.publicId}
@@ -22,9 +22,9 @@ export function AssociationPhoto({
           />
         ) : (
           <>
-            <span aria-hidden="true" className="pointer-events-none absolute inset-3 border border-purple/15 sm:inset-5" />
-            <div className="relative mx-6 grid justify-items-center gap-3 text-center text-sm font-medium text-purple">
-              <span className="grid size-12 place-items-center rounded-full border border-gold bg-ivory">
+            <span aria-hidden="true" className="pointer-events-none absolute inset-3 border border-accent/15 sm:inset-5" />
+            <div className="relative mx-6 grid justify-items-center gap-3 text-center text-sm font-medium text-accent">
+              <span className="grid size-12 place-items-center rounded-full border border-gold bg-background">
                 <ImageIcon size={21} strokeWidth={1.5} aria-hidden="true" />
               </span>
               <span>Association photograph placeholder</span>

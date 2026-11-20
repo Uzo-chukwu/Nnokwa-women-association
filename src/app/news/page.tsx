@@ -19,10 +19,10 @@ export default function NewsPage() {
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-6 px-5 py-12 sm:px-8 sm:py-16 lg:flex-row lg:items-end lg:justify-between xl:px-12 xl:py-20">
           <div className="max-w-[42rem]">
             <span aria-hidden="true" className="mb-5 block h-px w-10 bg-gold" />
-            <h1 className="text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.12] font-semibold tracking-[-0.035em] text-charcoal">
+            <h1 className="text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.12] font-semibold tracking-[-0.035em] text-foreground">
               News &amp; Events
             </h1>
-            <p className="mt-4 text-base leading-[1.75] text-charcoal/85 sm:text-lg">
+            <p className="mt-4 text-base leading-[1.75] text-foreground/85 sm:text-lg">
               {newsEventsPreview.description}
             </p>
           </div>
@@ -35,7 +35,7 @@ export default function NewsPage() {
       <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16 xl:px-12">
         {publishedEntries.length > 0 ? (
           <section aria-labelledby="latest-updates-heading">
-            <h2 id="latest-updates-heading" className="text-3xl leading-tight font-semibold text-charcoal">Latest updates</h2>
+            <h2 id="latest-updates-heading" className="text-3xl leading-tight font-semibold text-foreground">Latest updates</h2>
             <ul role="list" className="mt-6 grid gap-5 sm:grid-cols-2 xl:gap-6">
               {publishedEntries.map((entry) => (
                 <li key={entry.id}><NewsEventCard entry={entry} /></li>
@@ -44,13 +44,13 @@ export default function NewsPage() {
           </section>
         ) : (
           <section aria-labelledby="news-empty-heading" className="border border-border bg-surface px-5 py-10 text-center sm:px-8 sm:py-14">
-            <div className="mx-auto mb-5 grid size-12 place-items-center rounded-sm bg-gold/20 text-purple">
+            <div className="mx-auto mb-5 grid size-12 place-items-center rounded-sm bg-gold/20 text-accent">
               <CalendarDays size={24} strokeWidth={1.5} aria-hidden="true" />
             </div>
-            <h2 id="news-empty-heading" className="text-2xl leading-tight font-semibold text-purple sm:text-3xl">
+            <h2 id="news-empty-heading" className="text-2xl leading-tight font-semibold text-foreground sm:text-3xl">
               Updates will be published here
             </h2>
-            <p className="mx-auto mt-3 max-w-[32rem] text-base leading-relaxed text-charcoal/85">
+            <p className="mx-auto mt-3 max-w-[32rem] text-base leading-relaxed text-foreground/85">
               Check back for association news and event announcements.
             </p>
           </section>

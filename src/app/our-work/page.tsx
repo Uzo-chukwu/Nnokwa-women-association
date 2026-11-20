@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: ourWorkPage.introduction,
 };
 
-const headingClass = "text-[clamp(2rem,5vw,3.25rem)] leading-[1.12] font-semibold tracking-[-0.035em] text-charcoal";
+const headingClass = "text-[clamp(2rem,5vw,3.25rem)] leading-[1.12] font-semibold tracking-[-0.035em] text-foreground";
 
 export default function OurWorkPage() {
   const { title, introduction, sdgIntroduction, support } = ourWorkPage;
@@ -20,10 +20,10 @@ export default function OurWorkPage() {
       <section aria-labelledby="our-work-heading" className="border-b border-border bg-background">
         <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16 xl:px-12 xl:py-20">
           <span aria-hidden="true" className="mb-5 block h-px w-10 bg-gold" />
-          <h1 id="our-work-heading" className="text-[clamp(2.5rem,6vw,4.25rem)] leading-[1.08] font-semibold tracking-[-0.045em] text-charcoal">
+          <h1 id="our-work-heading" className="text-[clamp(2.5rem,6vw,4.25rem)] leading-[1.08] font-semibold tracking-[-0.045em] text-foreground">
             {title}
           </h1>
-          <p className="mt-5 max-w-[40rem] text-base leading-[1.75] text-charcoal/85 sm:text-lg">{introduction}</p>
+          <p className="mt-5 max-w-[40rem] text-base leading-[1.75] text-foreground/85 sm:text-lg">{introduction}</p>
         </div>
       </section>
 
@@ -34,10 +34,10 @@ export default function OurWorkPage() {
             {focusAreas.map(({ id, title, description, goal }) => (
               <li key={id} className="py-5">
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                  <h3 className="text-xl leading-tight font-semibold text-purple sm:text-2xl">{title}</h3>
-                  <span className="text-xs font-semibold tracking-wider text-purple">SDG {goal}</span>
+                  <h3 className="text-xl leading-tight font-semibold text-foreground sm:text-2xl">{title}</h3>
+                  <span className="text-xs font-semibold tracking-wider text-accent">SDG {goal}</span>
                 </div>
-                <p className="mt-2 text-base leading-relaxed text-charcoal/85">{description}</p>
+                <p className="mt-2 text-base leading-relaxed text-foreground/85">{description}</p>
               </li>
             ))}
           </ul>
@@ -57,7 +57,7 @@ export default function OurWorkPage() {
 
       <SdgCommitment heading="Our SDG Commitment" description={sdgIntroduction} />
 
-      <section aria-labelledby="support-our-work-heading" className="bg-purple text-ivory">
+      <section aria-labelledby="support-our-work-heading" className="bg-brand-panel text-ivory">
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-6 px-5 py-12 sm:px-8 sm:py-16 lg:flex-row lg:items-center lg:justify-between xl:px-12">
           <div>
             <h2 id="support-our-work-heading" className="font-serif text-3xl leading-tight font-semibold sm:text-4xl">

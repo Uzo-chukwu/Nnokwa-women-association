@@ -6,7 +6,7 @@ export function DocumentLink({ href, children }: { href: string; children: React
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex min-h-11 items-center rounded-sm border border-purple/35 px-5 py-2.5 text-sm font-semibold text-purple hover:border-purple hover:bg-purple/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple"
+      className="inline-flex min-h-11 items-center rounded-sm border border-accent/35 px-5 py-2.5 text-sm font-semibold text-accent hover:border-accent hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
     >
       {children}
     </a>

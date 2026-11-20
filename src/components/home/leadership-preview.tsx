@@ -1,7 +1,7 @@
 import { HomeSectionHeading } from "@/components/home/home-section-heading";
 import { ExecutiveCard } from "@/components/leadership/executive-card";
 import { ActionLink } from "@/components/ui/action-link";
-import { executives, leadershipPreview } from "@/data/leadership";
+import { leadershipPreview, presidentGeneral } from "@/data/leadership";
 
 export function LeadershipPreview() {
   const { label, heading, description, action } = leadershipPreview;
@@ -9,20 +9,20 @@ export function LeadershipPreview() {
   return (
     <section aria-labelledby="leadership-preview-heading" className="border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 xl:px-12 xl:py-24">
-        <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:grid-rows-[auto_1fr] lg:gap-x-16">
           <div className="max-w-[48rem]">
             <HomeSectionHeading id="leadership-preview-heading" label={label} heading={heading} />
-            <p className="mt-5 max-w-[42rem] text-base leading-[1.75] text-charcoal/85 sm:text-lg">
+            <p className="mt-5 max-w-[42rem] text-base leading-[1.75] text-foreground/85 sm:text-lg">
               {description}
             </p>
           </div>
-          <div className="shrink-0">
+          <div className="sm:max-w-sm lg:col-start-2 lg:row-span-2 lg:row-start-1">
+            <ExecutiveCard executive={presidentGeneral} />
+          </div>
+          <div>
             <ActionLink href={action.href} variant="secondary">{action.label}</ActionLink>
           </div>
         </div>
-        <ul role="list" className="mt-8 grid gap-3 min-[380px]:grid-cols-2 min-[380px]:gap-4 sm:mt-10 sm:gap-5 lg:grid-cols-4 xl:gap-6">
-          {executives.map((executive) => <ExecutiveCard key={executive.id} executive={executive} />)}
-        </ul>
       </div>
     </section>
   );

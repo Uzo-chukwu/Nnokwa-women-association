@@ -13,13 +13,43 @@
 }
 
 @theme inline {
-  --color-background: var(--color-ivory);
-  --color-foreground: var(--color-charcoal);
-  --color-surface: var(--color-white);
-  --color-border: var(--color-light-grey);
+  --color-background: var(--site-background);
+  --color-foreground: var(--site-foreground);
+  --color-surface: var(--site-surface);
+  --color-border: var(--site-border);
+  --color-accent: var(--site-accent);
+  --color-brand-detail: var(--site-brand-detail);
+  --color-brand-panel: var(--site-brand-panel);
+  --color-footer: var(--site-footer);
+  --color-primary: var(--color-gold);
+  --color-primary-hover: #e6ca89;
 }
 
 @layer base {
+  :root {
+    color-scheme: light;
+    --site-background: var(--color-ivory);
+    --site-foreground: var(--color-charcoal);
+    --site-surface: var(--color-white);
+    --site-border: var(--color-light-grey);
+    --site-accent: #76571f;
+    --site-brand-detail: var(--color-purple);
+    --site-brand-panel: #302a25;
+    --site-footer: var(--color-charcoal);
+  }
+
+  :root[data-theme="dark"],
+  :root[data-system-dark]:not([data-theme]) {
+    color-scheme: dark;
+    --site-background: #1b1916;
+    --site-foreground: #f6efe3;
+    --site-surface: #25211d;
+    --site-border: #4b4237;
+    --site-accent: #e2c27b;
+    --site-brand-detail: #d2bbdf;
+    --site-footer: #151311;
+  }
+
   body {
     @apply min-h-screen bg-background font-sans text-base text-foreground;
   }

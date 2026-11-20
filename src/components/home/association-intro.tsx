@@ -11,7 +11,7 @@ export function AssociationIntro() {
       <div className="mx-auto grid max-w-7xl items-center gap-9 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1fr_1.05fr] lg:gap-14 xl:gap-24 xl:px-12 xl:py-24">
         <div className="lg:col-start-2 lg:row-start-1">
           <HomeSectionHeading id="association-intro-heading" label={label} heading={heading} />
-          <p className="mt-5 max-w-[36rem] text-base leading-[1.75] text-charcoal/85 sm:mt-6 sm:text-lg">
+          <p className="mt-5 max-w-[36rem] text-base leading-[1.75] text-foreground/85 sm:mt-6 sm:text-lg">
             {body}
           </p>
           <div className="mt-7 sm:mt-8">

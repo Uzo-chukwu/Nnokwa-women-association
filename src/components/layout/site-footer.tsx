@@ -19,7 +19,7 @@ export async function SiteFooter() {
   const officialSocialLinks = socialLinks.flatMap(({ platform, url }) => url ? [{ platform, url }] : []);
 
   return (
-    <footer className="border-t border-gold/40 bg-charcoal text-ivory">
+    <footer className="border-t border-gold/40 bg-footer text-ivory">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-5 gap-y-8 px-5 pt-12 pb-10 sm:gap-x-8 sm:px-8 sm:pt-14 sm:pb-12 md:grid-cols-3 lg:grid-cols-[1.45fr_0.8fr_0.8fr_1fr] xl:gap-x-12 xl:px-12">
         <div className="col-span-2 md:col-span-3 lg:col-span-1">
           <div aria-hidden="true" className="mb-4 h-px w-9 bg-gold" />

@@ -14,13 +14,13 @@ export function HomeHero() {
         <div>
           <h1 id="home-hero-heading" className="home-hero-heading">
             {headline.map((line, index) => (
-              <span key={line} className="block last:text-purple">
+              <span key={line} className="block last:text-accent">
                 {line}{index < headline.length - 1 ? " " : null}
               </span>
             ))}
           </h1>
 
-          <p className="mt-6 max-w-[34rem] text-base leading-[1.75] text-charcoal/85 sm:mt-7 sm:text-lg">
+          <p className="mt-6 max-w-[34rem] text-base leading-[1.75] text-foreground/85 sm:mt-7 sm:text-lg">
             {description}
           </p>
 

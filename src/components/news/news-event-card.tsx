@@ -15,7 +15,7 @@ export function NewsEventCard({ entry, featured = false }: { entry: NewsEntry; f
 
   return (
     <article className={`flex h-full flex-col border border-border bg-surface ${featured ? "" : "lg:flex-row"}`}>
-      <div className={`relative grid aspect-[16/9] place-items-center overflow-hidden border-border bg-ivory ${featured ? "border-b lg:grow" : "border-b lg:aspect-auto lg:w-2/5 lg:shrink-0 lg:border-r lg:border-b-0"}`}>
+      <div className={`relative grid aspect-[16/9] place-items-center overflow-hidden border-border bg-background ${featured ? "border-b lg:grow" : "border-b lg:aspect-auto lg:w-2/5 lg:shrink-0 lg:border-r lg:border-b-0"}`}>
         {cloudinaryConfig.cloudName && image?.publicId ? (
           <CloudinaryImage
             src={image.publicId}
@@ -25,9 +25,9 @@ export function NewsEventCard({ entry, featured = false }: { entry: NewsEntry; f
             className="object-cover"
           />
         ) : (
-          <div className={`absolute inset-0 grid place-items-center ${featured ? "bg-gold/15" : "bg-purple/5"}`}>
-            <span aria-hidden="true" className={`absolute inset-2 border sm:inset-3 ${featured ? "border-gold/70" : "border-purple/15"}`} />
-            <div className="relative grid justify-items-center gap-2 px-4 text-center text-sm font-medium text-purple">
+          <div className={`absolute inset-0 grid place-items-center ${featured ? "bg-gold/15" : "bg-accent/5"}`}>
+            <span aria-hidden="true" className={`absolute inset-2 border sm:inset-3 ${featured ? "border-gold/70" : "border-accent/15"}`} />
+            <div className="relative grid justify-items-center gap-2 px-4 text-center text-sm font-medium text-accent">
               <ImageIcon size={featured ? 26 : 22} strokeWidth={1.5} aria-hidden="true" />
               <span>Photograph placeholder</span>
             </div>
@@ -36,25 +36,25 @@ export function NewsEventCard({ entry, featured = false }: { entry: NewsEntry; f
       </div>
       <div className={`flex min-w-0 grow flex-col items-start p-5 sm:p-6 ${featured ? "lg:grow-0 lg:p-7" : "lg:p-5 xl:p-6"}`}>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-          <p className="font-semibold text-purple">{category}</p>
+          <p className="font-semibold text-accent">{category}</p>
           {entry.status === "placeholder" && (
-            <span className="rounded-sm bg-ivory px-2 py-0.5 text-xs text-charcoal/85">Sample entry</span>
+            <span className="rounded-sm bg-background px-2 py-0.5 text-xs text-foreground/85">Sample entry</span>
           )}
         </div>
-        <h3 className={`mt-3 leading-tight font-semibold text-charcoal ${featured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"}`}>
+        <h3 className={`mt-3 leading-tight font-semibold text-foreground ${featured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"}`}>
           {title}
         </h3>
         {date && (
-          <p className="mt-2 text-sm text-charcoal/85">
+          <p className="mt-2 text-sm text-foreground/85">
             {date.kind === "event" ? "Event date" : "Published"}{" "}
             <time dateTime={date.iso}>{dateFormatter.format(new Date(date.iso))}</time>
           </p>
         )}
-        <p className="mt-2 text-base leading-relaxed text-charcoal/85">{excerpt}</p>
+        <p className="mt-2 text-base leading-relaxed text-foreground/85">{excerpt}</p>
         {entry.status === "published" && (
           <Link
             href={entry.href}
-            className="mt-4 inline-flex min-h-11 items-center rounded-sm text-sm font-semibold text-purple underline decoration-gold underline-offset-4 hover:decoration-purple focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple"
+            className="mt-4 inline-flex min-h-11 items-center rounded-sm text-sm font-semibold text-accent underline decoration-gold underline-offset-4 hover:decoration-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             Read more<span className="sr-only"> about {title}</span>
           </Link>

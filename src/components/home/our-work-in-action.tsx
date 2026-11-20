@@ -13,7 +13,7 @@ export function OurWorkInAction() {
           <div className="max-w-[38rem]">
             <HomeSectionHeading id={homeSectionIds.ourWork} label={label} heading={heading} />
           </div>
-          <p className="max-w-[34rem] text-base leading-[1.75] text-charcoal/85 sm:text-lg">
+          <p className="max-w-[34rem] text-base leading-[1.75] text-foreground/85 sm:text-lg">
             {description}
           </p>
         </div>

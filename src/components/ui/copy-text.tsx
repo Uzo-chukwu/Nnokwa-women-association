@@ -30,12 +30,12 @@ export function CopyText({
       <button
         type="button"
         onClick={copyText}
-        className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-sm border border-purple/35 px-3 py-2 text-left text-sm font-semibold text-purple hover:border-purple hover:bg-purple/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple motion-safe:transition-colors"
+        className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-sm border border-accent/35 px-3 py-2 text-left text-sm font-semibold text-accent hover:border-accent hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-safe:transition-colors"
       >
         <Copy size={16} aria-hidden="true" />
         {label}
       </button>
-      <p role="status" aria-atomic="true" className="mt-2 min-h-5 text-sm text-purple">
+      <p role="status" aria-atomic="true" className="mt-2 min-h-5 text-sm text-accent">
         {feedback}
       </p>
     </div>

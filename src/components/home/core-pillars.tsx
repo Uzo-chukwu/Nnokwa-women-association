@@ -15,10 +15,10 @@ export function CorePillars() {
           {items.map(({ id, heading, description }) => (
             <li key={id} className="relative flex flex-col border border-border bg-surface px-5 pt-6 pb-7 hover:border-gold/80 motion-safe:transition-colors xl:px-6">
               <span aria-hidden="true" className="absolute top-0 left-5 h-0.5 w-9 bg-gold xl:left-6" />
-              <h3 className="text-[1.375rem] leading-tight font-semibold text-purple lg:min-h-[2.75em] xl:text-2xl">
+              <h3 className="text-[1.375rem] leading-tight font-semibold text-foreground lg:min-h-[2.75em] xl:text-2xl">
                 {heading}
               </h3>
-              <p className="mt-2 text-base leading-relaxed text-charcoal/85">{description}</p>
+              <p className="mt-2 text-base leading-relaxed text-foreground/85">{description}</p>
             </li>
           ))}
         </ul>

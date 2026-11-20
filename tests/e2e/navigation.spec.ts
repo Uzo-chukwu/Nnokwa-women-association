@@ -70,7 +70,7 @@ test.describe("mobile navigation", () => {
     await expect(close).toBeFocused();
     await expect(close).toHaveAttribute("aria-expanded", "true");
     await page.keyboard.press("Shift+Tab");
-    await expect(page.getByRole("banner").getByRole("link", { name: /Nnokwa Women Association/i })).toBeFocused();
+    await expect(page.getByRole("banner").getByRole("button", { name: "Dark mode" })).toBeFocused();
     await expect(open).toHaveAttribute("aria-expanded", "false");
   });
 });

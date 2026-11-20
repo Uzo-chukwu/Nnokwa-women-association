@@ -20,21 +20,21 @@ export function BankTransferCard({
       role="region"
       aria-labelledby={headingId}
       tabIndex={-1}
-      className={`scroll-mt-5 border-t-2 bg-surface p-5 text-charcoal focus-visible:outline-2 focus-visible:outline-offset-4 sm:p-8 ${onDarkBackground ? "border-gold focus-visible:outline-gold" : "border border-border border-t-gold focus-visible:outline-purple"}`}
+      className={`scroll-mt-5 border-t-2 bg-surface p-5 text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 sm:p-8 ${onDarkBackground ? "border-gold focus-visible:outline-gold" : "border border-border border-t-gold focus-visible:outline-accent"}`}
     >
-      <h3 id={headingId} className="text-2xl leading-tight font-semibold text-purple sm:text-3xl">Bank transfer details</h3>
-      <p className="mt-2 text-sm leading-relaxed text-charcoal/85">We accept donations by direct bank transfer only.</p>
+      <h3 id={headingId} className="text-2xl leading-tight font-semibold text-foreground sm:text-3xl">Bank transfer details</h3>
+      <p className="mt-2 text-sm leading-relaxed text-foreground/85">We accept donations by direct bank transfer only.</p>
       <dl className="mt-5 grid gap-4 border-y border-border py-5">
         <div>
-          <dt className="text-sm font-medium text-purple">Bank</dt>
+          <dt className="text-sm font-medium text-accent">Bank</dt>
           <dd className="mt-1 font-semibold">{bank}</dd>
         </div>
         <div>
-          <dt className="text-sm font-medium text-purple">Account name</dt>
+          <dt className="text-sm font-medium text-accent">Account name</dt>
           <dd className="mt-1 font-semibold">{accountName}</dd>
         </div>
         <div>
-          <dt className="text-sm font-medium text-purple">Account number</dt>
+          <dt className="text-sm font-medium text-accent">Account number</dt>
           <dd className="mt-1">
             <span className="text-2xl font-semibold tracking-[0.06em] tabular-nums select-all sm:text-3xl">{accountNumber}</span>
             <CopyAccountNumber accountNumber={accountNumber} />

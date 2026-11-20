@@ -39,7 +39,7 @@ export function SiteNavigation() {
         aria-controls="primary-navigation"
         aria-label={isOpen ? "Close navigation" : "Open navigation"}
         onClick={() => setIsOpen(!isOpen)}
-        className="grid size-11 place-items-center rounded-sm border border-border bg-surface text-purple focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple lg:hidden"
+        className="grid size-11 place-items-center rounded-sm border border-border bg-surface text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent lg:hidden"
       >
         {isOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
       </button>
@@ -57,7 +57,7 @@ export function SiteNavigation() {
                 prefetch={false}
                 aria-current={pathname === href ? "page" : undefined}
                 onNavigate={isOpen ? closeMenu : undefined}
-                className="flex min-h-11 items-center rounded-sm border-b border-border px-1 text-sm font-medium whitespace-nowrap hover:text-purple focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple aria-[current=page]:font-semibold aria-[current=page]:text-purple aria-[current=page]:underline aria-[current=page]:decoration-gold aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8 lg:border-0"
+                className="flex min-h-11 items-center rounded-sm border-b border-border px-1 text-sm font-medium whitespace-nowrap hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aria-[current=page]:font-semibold aria-[current=page]:text-accent aria-[current=page]:underline aria-[current=page]:decoration-accent aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8 lg:border-0"
               >
                 {label}
               </SiteLink>

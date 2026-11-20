@@ -1,10 +1,11 @@
 import { SiteLink } from "@/components/ui/site-link";
 import type { ReactNode } from "react";
 
+const primaryColors = "bg-primary text-charcoal hover:bg-primary-hover";
 const variants = {
-  primary: "border-purple bg-purple text-white hover:border-charcoal hover:bg-charcoal focus-visible:outline-purple",
-  secondary: "border-purple/35 text-purple hover:border-purple hover:bg-purple/5 focus-visible:outline-purple",
-  gold: "border-gold bg-gold text-charcoal hover:border-ivory hover:bg-ivory focus-visible:outline-gold",
+  primary: `border-accent ${primaryColors} focus-visible:outline-accent`,
+  secondary: "border-accent/35 text-accent hover:border-accent hover:bg-accent/5 focus-visible:outline-accent",
+  gold: `border-gold ${primaryColors} focus-visible:outline-gold`,
 };
 
 export function ActionLink({
