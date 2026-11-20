@@ -5,7 +5,7 @@ import { focusAreas } from "../../src/data/our-work";
 import { siteInfo } from "../../src/data/site";
 import { ourWork } from "../../src/data/work-activities";
 
-const donationAnchor = "/#donation-bank-details";
+const donationAnchor = "/donate#donate-bank-details";
 
 function transferDetails(page: Page) {
   return page.getByRole("region", { name: "Bank transfer details" });
@@ -29,7 +29,7 @@ async function mockClipboard(page: Page, denyWrite = false) {
   }, denyWrite);
 }
 
-test("global Donate links open the page and homepage calls to action reach the homepage transfer details", async ({ page }) => {
+test("global and homepage donation links open Donate and bank details are absent from Home", async ({ page }) => {
   await page.goto("/news");
   await page.getByRole("navigation", { name: "Main navigation" })
     .getByRole("link", { name: "Donate", exact: true }).click();
@@ -43,30 +43,30 @@ test("global Donate links open the page and homepage calls to action reach the h
 
   for (const name of ["Support Our Work", "Make a Donation"]) {
     await page.goto("/");
+    await expect(transferDetails(page)).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Copy account number" })).toHaveCount(0);
     await page.getByRole("main").getByRole("link", { name, exact: true }).click();
-    await expect(page).toHaveURL(donationAnchor);
-    await expect(transferDetails(page)).toBeInViewport();
+    await expect(page).toHaveURL("/donate");
+    await expect(page.getByRole("heading", { level: 1, name: donatePage.heading })).toBeVisible();
   }
 });
 
-for (const path of [donationAnchor, "/donate#donate-bank-details"]) {
-  test(`the copy button at ${path} copies the confirmed number and announces success`, async ({ page }) => {
-    await mockClipboard(page);
-    await page.goto(path);
-    const details = transferDetails(page);
-    const copy = details.getByRole("button", { name: "Copy account number" });
-    const value = details.locator("dd").filter({ has: page.getByRole("button", { name: "Copy account number" }) })
-      .locator(":scope > span");
-    const displayedNumber = (await value.innerText()).trim();
-    expect(displayedNumber).toBe("2439636465");
-    await copy.press("Enter");
-    const feedback = details.getByRole("status");
-    await expect(feedback).toHaveAttribute("aria-atomic", "true");
-    await expect(feedback).toHaveText("Account number copied.");
-    const copiedNumber = await page.evaluate(() => navigator.clipboard.readText());
-    expect(copiedNumber === displayedNumber, "mock clipboard matches the displayed value").toBe(true);
-  });
-}
+test("the Donate copy button copies the confirmed number and announces success", async ({ page }) => {
+  await mockClipboard(page);
+  await page.goto(donationAnchor);
+  const details = transferDetails(page);
+  const copy = details.getByRole("button", { name: "Copy account number" });
+  const value = details.locator("dd").filter({ has: page.getByRole("button", { name: "Copy account number" }) })
+    .locator(":scope > span");
+  const displayedNumber = (await value.innerText()).trim();
+  expect(displayedNumber).toBe("2439636465");
+  await copy.press("Enter");
+  const feedback = details.getByRole("status");
+  await expect(feedback).toHaveAttribute("aria-atomic", "true");
+  await expect(feedback).toHaveText("Account number copied.");
+  const copiedNumber = await page.evaluate(() => navigator.clipboard.readText());
+  expect(copiedNumber === displayedNumber, "mock clipboard matches the displayed value").toBe(true);
+});
 
 test("the Donate page shows the confirmed transfer details and fits all requested widths", async ({ page }) => {
   const response = await page.goto("/donate");
@@ -94,7 +94,7 @@ test("the Donate page shows the confirmed transfer details and fits all requeste
     await expect(details.getByText(value, { exact: true })).toBeVisible();
   }
   await main.getByRole("link", { name: "Support Our Mission" }).click();
-  await expect(page).toHaveURL("/donate#donate-bank-details");
+  await expect(page).toHaveURL(donationAnchor);
   await expect(howToDonate.getByText(donatePage.instructions, { exact: true })).toBeInViewport();
   await expect(details).toBeInViewport();
 

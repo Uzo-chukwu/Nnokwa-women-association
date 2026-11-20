@@ -36,7 +36,7 @@ Run an individual spec with `npm test -- tests/e2e/navigation.spec.ts`. Failed t
 
 The root layout includes the global header and footer. The global footer and `/contact` share the official email and social URLs configured in `src/data/site.ts`.
 
-The root route has the global header, homepage hero, association introduction, core pillars, Our Work in Action, SDG commitment, leadership preview, News & Events preview, and donation section. The `/about` page introduces the association, presents its history and governance documents, and keeps its history separate from Nnokwa’s history. The `/leadership` page shares its executive data with the homepage preview. The `/our-work` and `/partnerships` pages share focus, activity, and SDG data. The `/news` listing displays published entries and shows an empty state when none are available. The `/donate` page shares the confirmed bank account and transfer card with the homepage.
+The root route has the global header, homepage hero, association introduction, core pillars, Our Work in Action, SDG commitment, leadership preview, News & Events preview, and donation section. The `/about` page introduces the association, presents its history and governance documents, and keeps its history separate from Nnokwa’s history. The `/leadership` page shares its executive data with the homepage preview. The `/our-work` and `/partnerships` pages share focus, activity, and SDG data. The `/news` listing displays published entries and shows an empty state when none are available. The `/donate` page displays the confirmed bank account and transfer instructions.
 
 `getSiteInfo()` is the current content entry point. When Sanity is integrated, map its response to `SiteInfo` at this boundary so the layout can keep the same interface. Add other content types and access functions as verified content becomes available.
 
@@ -60,6 +60,6 @@ Registration details and the public constitution link live in `src/data/governan
 
 ## Donations
 
-The association's confirmed bank transfer details live in `src/data/donations.ts` and are used on the homepage and `/donate`.
+The association's confirmed bank transfer details live in `src/data/donations.ts` and are shown on `/donate`.
 
 Use `CloudinaryImage` from `src/components/ui/cloudinary-image.tsx` for other Cloudinary assets. Pass the public ID as `src`, descriptive `alt` text, intrinsic dimensions or `fill`, and `sizes` for responsive images.

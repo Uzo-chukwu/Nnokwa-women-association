@@ -4,11 +4,9 @@ import { donationBankAccount } from "@/data/donations";
 
 export function BankTransferCard({
   id,
-  onDarkBackground = false,
   children,
 }: {
   id: string;
-  onDarkBackground?: boolean;
   children?: ReactNode;
 }) {
   const { bank, accountName, accountNumber } = donationBankAccount;
@@ -20,7 +18,7 @@ export function BankTransferCard({
       role="region"
       aria-labelledby={headingId}
       tabIndex={-1}
-      className={`scroll-mt-5 border-t-2 bg-surface p-5 text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 sm:p-8 ${onDarkBackground ? "border-gold focus-visible:outline-gold" : "border border-border border-t-gold focus-visible:outline-accent"}`}
+      className="scroll-mt-5 border border-t-2 border-border border-t-gold bg-surface p-5 text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:p-8"
     >
       <h3 id={headingId} className="text-2xl leading-tight font-semibold text-foreground sm:text-3xl">Bank transfer details</h3>
       <p className="mt-2 text-sm leading-relaxed text-foreground/85">We accept donations by direct bank transfer only.</p>

@@ -1,9 +1,7 @@
 export const homeSectionIds = {
-  donationDetails: "donation-bank-details",
   ourWork: "our-work-in-action-heading",
 } as const;
 
-export const homeDonationHref = `/#${homeSectionIds.donationDetails}`;
 export const donateTransferId = "donate-bank-details";
 
 export const routes = {

@@ -4,7 +4,7 @@ import { sdgCommitment } from "../../src/data/sdg-commitment";
 import { siteInfo } from "../../src/data/site";
 import { ourWork } from "../../src/data/work-activities";
 
-test("desktop and footer navigation open Our Work and its donation link reaches the transfer details", async ({ page }) => {
+test("desktop and footer navigation open Our Work and its donation link opens Donate", async ({ page }) => {
   for (const group of ["Main navigation", "Footer Explore"]) {
     await page.goto("/");
     await page.getByRole("navigation", { name: group }).getByRole("link", { name: "Our Work", exact: true }).click();
@@ -14,10 +14,10 @@ test("desktop and footer navigation open Our Work and its donation link reaches 
 
   const support = page.getByRole("region", { name: "Support our work" });
   const donate = support.getByRole("link", { name: "Make a Donation" });
-  await expect(donate).toHaveAttribute("href", "/#donation-bank-details");
+  await expect(donate).toHaveAttribute("href", "/donate");
   await donate.click();
-  await expect(page).toHaveURL("/#donation-bank-details");
-  await expect(page.getByRole("region", { name: "Bank transfer details" })).toBeInViewport();
+  await expect(page).toHaveURL("/donate");
+  await expect(page.getByRole("region", { name: "Bank transfer details" })).toBeVisible();
 });
 
 test("Our Work shows all focus areas, activities and goals and fits all requested widths", async ({ page }) => {

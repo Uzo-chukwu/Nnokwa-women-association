@@ -1,4 +1,4 @@
-import { homeDonationHref, routes } from "@/data/navigation";
+import { routes } from "@/data/navigation";
 
 export const homeHero = {
   headline: [
@@ -8,7 +8,7 @@ export const homeHero = {
   ],
   description:
     "Through education, health advocacy, cultural preservation and community development, we work towards a stronger and more sustainable Nnokwa.",
-  primaryAction: { href: homeDonationHref, label: "Support Our Work" },
+  primaryAction: { href: routes.donate, label: "Support Our Work" },
   secondaryAction: { href: routes.about, label: "Discover Our Story" },
   image: {
     publicId: process.env.NEXT_PUBLIC_CLOUDINARY_HERO_PUBLIC_ID?.trim(),

@@ -1,4 +1,4 @@
-import { homeDonationHref } from "@/data/navigation";
+import { routes } from "@/data/navigation";
 
 type FocusArea = {
   id: string;
@@ -53,6 +53,6 @@ export const ourWorkPage = {
   support: {
     heading: "Support our work",
     description: "Help the association continue its work with women, families and the wider Nnokwa community.",
-    action: { href: homeDonationHref, label: "Make a Donation" },
+    action: { href: routes.donate, label: "Make a Donation" },
   },
 } as const;
