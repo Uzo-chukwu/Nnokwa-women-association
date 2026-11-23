@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/playfair-display";
+import { EntranceAnimation, entranceContentId, startEntranceScript } from "@/components/layout/entrance-animation";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { restoreThemeScript } from "@/config/theme";
@@ -16,19 +17,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en-NG" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: restoreThemeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: startEntranceScript }} />
       </head>
       <body>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:text-charcoal"
-        >
-          Skip to content
-        </a>
-        <SiteHeader />
-        <main id="main-content" tabIndex={-1}>
-          {children}
-        </main>
-        <SiteFooter />
+        <EntranceAnimation />
+        <div id={entranceContentId} suppressHydrationWarning>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:text-charcoal"
+          >
+            Skip to content
+          </a>
+          <SiteHeader />
+          <main id="main-content" tabIndex={-1}>
+            {children}
+          </main>
+          <SiteFooter />
+        </div>
       </body>
     </html>
   );

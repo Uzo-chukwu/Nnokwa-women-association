@@ -51,9 +51,10 @@ export function ThemeToggle() {
       aria-pressed={isDark}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onClick={toggleTheme}
-      className="grid size-11 shrink-0 cursor-pointer place-items-center rounded-sm border border-border text-accent hover:border-accent hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+      className="site-theme-toggle grid size-11 shrink-0 cursor-pointer place-items-center rounded-sm text-accent hover:bg-accent/5 active:bg-accent/15 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent motion-safe:transition-colors"
     >
-      {isDark ? <Sun size={20} aria-hidden="true" /> : <Moon size={20} aria-hidden="true" />}
+      <Sun size={20} aria-hidden="true" className="site-theme-icon site-theme-sun" />
+      <Moon size={20} aria-hidden="true" className="site-theme-icon site-theme-moon" />
     </button>
   );
 }

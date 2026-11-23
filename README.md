@@ -44,7 +44,7 @@ The root route has the global header, homepage hero, association introduction, c
 
 When Cloudinary images are ready, copy `.env.example` to `.env.local`, fill in `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` with the public cloud name, and restart the development server. Set the variable before building for production.
 
-Set `NEXT_PUBLIC_CLOUDINARY_HERO_PUBLIC_ID` to the approved community photograph's public ID, including any folder path. Set `NEXT_PUBLIC_CLOUDINARY_HERO_ALT` to a short description of that photograph. The hero shows a placeholder until a cloud name and public ID are set.
+The homepage hero uses the ordered Cloudinary assets in `src/data/home.ts`. The optional `NEXT_PUBLIC_CLOUDINARY_HERO_PUBLIC_ID` and `NEXT_PUBLIC_CLOUDINARY_HERO_ALT` settings remain available as the About page's photo fallback when it has no introduction photo.
 
 For the association introduction, set `NEXT_PUBLIC_CLOUDINARY_INTRO_PUBLIC_ID` and `NEXT_PUBLIC_CLOUDINARY_INTRO_ALT` for its photograph. The introduction also shows a placeholder until a cloud name and public ID are set.
 
@@ -63,3 +63,9 @@ Registration details and the public constitution link live in `src/data/governan
 The association's confirmed bank transfer details live in `src/data/donations.ts` and are shown on `/donate`.
 
 Use `CloudinaryImage` from `src/components/ui/cloudinary-image.tsx` for other Cloudinary assets. Pass the public ID as `src`, descriptive `alt` text, intrinsic dimensions or `fill`, and `sizes` for responsive images.
+
+## Scroll reveals
+
+Use `Reveal` from `src/components/motion/reveal.tsx` around a block or set `as="li"` to keep a card as a direct child of a list. Choose `variant="fade-up"` (the default), `variant="fade-in"`, or `variant="scale"`. For staggered groups, pass the item's zero-based index as `staggerIndex`. Add `reveal-stagger-group` to the list for a short delay after the heading. Delays are capped at 220 ms, or 88 ms below 640 px.
+
+Use `variant="fade-in" keepVisible` for essential controls and details that should stay readable before and during the reveal.

@@ -5,11 +5,17 @@ test("the theme starts with the system preference and a keyboard choice persists
   await page.goto("/news", { waitUntil: "domcontentloaded" });
   const toggle = page.getByRole("button", { name: "Dark mode" });
   await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  const sun = toggle.locator(".site-theme-sun");
+  const moon = toggle.locator(".site-theme-moon");
+  await expect(sun).toHaveCSS("opacity", "1");
+  await expect(moon).toHaveCSS("opacity", "0");
   const darkSurface = await page.getByRole("banner").evaluate((banner) => getComputedStyle(banner).backgroundColor);
   const darkText = await page.getByRole("heading", { level: 1 }).evaluate((heading) => getComputedStyle(heading).color);
   await toggle.press("Space");
   await expect(toggle).toBeFocused();
   await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  await expect(sun).toHaveCSS("opacity", "0");
+  await expect(moon).toHaveCSS("opacity", "1");
   await expect(page.locator("html")).toHaveCSS("color-scheme", "light");
   await expect(page.getByRole("banner")).not.toHaveCSS("background-color", darkSurface);
   await expect(page.getByRole("heading", { level: 1 })).not.toHaveCSS("color", darkText);

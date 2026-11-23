@@ -1,0 +1,101 @@
+.homepage-entrance {
+  display: none;
+}
+
+html[data-home-entrance-scroll-lock] {
+  overflow: hidden;
+}
+
+html[data-home-entrance-scroll-lock] body {
+  padding-inline-end: var(--entrance-scrollbar-width);
+}
+
+html[data-home-entrance] .homepage-entrance {
+  position: fixed;
+  z-index: 100;
+  inset: 0 auto 0 0;
+  width: 100vw;
+  display: grid;
+  overflow: hidden;
+  place-items: center;
+  isolation: isolate;
+  touch-action: none;
+  animation: homepage-entrance-finish 3.4s step-end forwards;
+}
+
+.homepage-entrance-panel {
+  position: absolute;
+  inset-block: 0;
+  width: calc(50% + 1px);
+  background: var(--color-gold);
+}
+
+html[data-home-entrance] .homepage-entrance-panel {
+  animation-duration: 1.2s;
+  animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+  animation-delay: 2.2s;
+  animation-fill-mode: forwards;
+}
+
+.homepage-entrance-panel-left {
+  left: 0;
+  animation-name: homepage-entrance-slide-left;
+}
+
+.homepage-entrance-panel-right {
+  right: 0;
+  animation-name: homepage-entrance-slide-right;
+}
+
+.homepage-entrance-logo {
+  position: relative;
+  width: clamp(15rem, 48vw, 26rem);
+  aspect-ratio: 1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  clip-path: circle(32.4% at 50% 49.2%);
+  opacity: 0;
+}
+
+html[data-home-entrance] .homepage-entrance-logo {
+  animation: homepage-entrance-logo 2.35s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s both;
+}
+
+@keyframes homepage-entrance-logo {
+  0% {
+    opacity: 0;
+    transform: scale(0.53) rotate(-26deg);
+  }
+
+  24% {
+    opacity: 1;
+  }
+
+  87% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.14) rotate(0);
+  }
+}
+
+@keyframes homepage-entrance-slide-left {
+  to { transform: translateX(-101%); }
+}
+
+@keyframes homepage-entrance-slide-right {
+  to { transform: translateX(101%); }
+}
+
+@keyframes homepage-entrance-finish {
+  to { visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-home-entrance] .homepage-entrance {
+    display: none;
+  }
+}

@@ -1,10 +1,11 @@
+import { Reveal } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { homeSectionIds, routes } from "@/data/navigation";
 
 export function DonationSection() {
   return (
     <section aria-labelledby="donation-heading" className="border-t border-gold/45 bg-brand-panel text-ivory">
-      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 xl:px-12 xl:py-24">
+      <Reveal className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 xl:px-12 xl:py-24">
         <p className="mb-4 flex items-center gap-3 text-xs leading-relaxed font-semibold tracking-[0.14em] text-gold uppercase sm:mb-5">
           <span aria-hidden="true" className="h-px w-7 shrink-0 bg-gold" />
           Support our mission
@@ -27,7 +28,7 @@ export function DonationSection() {
             Learn More About Our Work
           </a>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

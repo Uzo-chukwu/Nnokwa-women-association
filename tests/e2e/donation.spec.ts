@@ -52,15 +52,23 @@ test("global and homepage donation links open Donate and bank details are absent
 });
 
 test("the Donate copy button copies the confirmed number and announces success", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 650 });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
   await mockClipboard(page);
-  await page.goto(donationAnchor);
+  await page.goto("/donate");
   const details = transferDetails(page);
+  const reveal = page.locator("[data-reveal-readable]").filter({ has: details });
+  await expect(reveal).toHaveAttribute("data-reveal-state", "pending");
+  await expect(reveal).toHaveCSS("opacity", "1");
   const copy = details.getByRole("button", { name: "Copy account number" });
   const value = details.locator("dd").filter({ has: page.getByRole("button", { name: "Copy account number" }) })
     .locator(":scope > span");
   const displayedNumber = (await value.innerText()).trim();
   expect(displayedNumber).toBe("2439636465");
   await copy.press("Enter");
+  await expect(copy).toBeFocused();
+  await expect(copy).toHaveAttribute("data-copy-result", "success");
+  await expect(reveal).toHaveAttribute("data-reveal-state", "shown");
   const feedback = details.getByRole("status");
   await expect(feedback).toHaveAttribute("aria-atomic", "true");
   await expect(feedback).toHaveText("Account number copied.");
@@ -122,6 +130,8 @@ test("a denied clipboard write announces the manual-copy fallback", async ({ pag
   await mockClipboard(page, true);
   await page.goto(donationAnchor);
   const details = transferDetails(page);
-  await details.getByRole("button", { name: "Copy account number" }).click();
+  const copy = details.getByRole("button", { name: "Copy account number" });
+  await copy.click();
+  await expect(copy).toHaveAttribute("data-copy-result", "error");
   await expect(details.getByRole("status")).toHaveText(/copy unavailable.*select and copy/i);
 });

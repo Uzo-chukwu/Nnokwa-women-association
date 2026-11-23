@@ -5,7 +5,7 @@ import { SocialIcon } from "@/components/ui/social-icon";
 import { footerNavigation } from "@/data/navigation";
 import { getSiteInfo } from "@/data/site";
 
-const footerLinkClass = "inline-flex min-h-8 items-center rounded-sm text-sm text-ivory/90 underline-offset-4 hover:text-gold hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold motion-safe:transition-colors";
+const footerLinkClass = "group inline-flex min-h-11 items-center rounded-sm text-sm text-ivory/90 underline decoration-transparent underline-offset-4 hover:text-gold hover:decoration-current active:bg-ivory/10 focus-visible:decoration-current focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold motion-safe:transition-colors md:min-h-8";
 
 async function CopyrightYear() {
   "use cache";
@@ -59,7 +59,7 @@ export async function SiteFooter() {
                 {officialSocialLinks.map(({ platform, url }) => (
                   <li key={platform}>
                     <a href={url} target="_blank" rel="noopener noreferrer" className={`gap-2 ${footerLinkClass}`}>
-                      <SocialIcon platform={platform} className="size-4 shrink-0 text-gold" />
+                      <SocialIcon platform={platform} className="size-4 shrink-0 text-gold opacity-85 group-hover:opacity-100 group-focus-visible:opacity-100 motion-safe:transition-opacity" />
                       {platform}
                     </a>
                   </li>

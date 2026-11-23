@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { CopyText } from "@/components/ui/copy-text";
 import { SiteLink } from "@/components/ui/site-link";
@@ -34,7 +35,7 @@ export default async function ContactPage() {
   return (
     <>
       <section aria-labelledby="contact-heading" className="border-b border-border bg-background">
-        <div className={`${container} py-12 sm:py-16 xl:py-20`}>
+        <Reveal animateIfVisible className={`${container} py-12 sm:py-16 xl:py-20`}>
           <p className="mb-5 flex items-center gap-3 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
             <span aria-hidden="true" className="h-px w-7 bg-gold" />
             Contact Us
@@ -43,12 +44,12 @@ export default async function ContactPage() {
             Let&apos;s Connect
           </h1>
           <p className="mt-5 max-w-[44rem] text-base leading-[1.75] text-foreground/85 sm:text-lg">{introduction}</p>
-        </div>
+        </Reveal>
       </section>
 
       <div className="bg-surface">
         <div className={`${container} grid items-start gap-10 py-12 sm:py-16 md:grid-cols-2 lg:gap-16 xl:py-20`}>
-          <section aria-labelledby="contact-information-heading">
+          <Reveal as="section" aria-labelledby="contact-information-heading" variant="fade-in" keepVisible>
             <h2 id="contact-information-heading" className={heading}>Contact information</h2>
             <dl className="mt-6 space-y-5 border-l-2 border-gold bg-background p-5 sm:p-7">
               <div>
@@ -64,7 +65,7 @@ export default async function ContactPage() {
                 <dd className="mt-1">
                   {contact.email ? (
                     <>
-                      <a href={`mailto:${contact.email}`} className={`wrap-anywhere ${textLink}`}>{contact.email}</a>
+                      <a href={`mailto:${contact.email}`} className={`inline-flex min-h-11 max-w-full items-center wrap-anywhere ${textLink}`}>{contact.email}</a>
                       <CopyText
                         value={contact.email}
                         label="Copy email address"
@@ -76,14 +77,16 @@ export default async function ContactPage() {
                 </dd>
               </div>
             </dl>
-          </section>
+          </Reveal>
 
           {officialSocialLinks.length > 0 && (
             <section aria-labelledby="contact-social-heading">
-              <h2 id="contact-social-heading" className={heading}>Connect with us</h2>
+              <Reveal>
+                <h2 id="contact-social-heading" className={heading}>Connect with us</h2>
+              </Reveal>
               <ul role="list" className="mt-6 grid grid-cols-2 gap-3">
-                {officialSocialLinks.map(({ platform, url }) => (
-                  <li key={platform}>
+                {officialSocialLinks.map(({ platform, url }, index) => (
+                  <Reveal as="li" key={platform} variant="fade-in" keepVisible staggerIndex={index % 2}>
                     <a
                       href={url}
                       target="_blank"
@@ -93,7 +96,7 @@ export default async function ContactPage() {
                       <SocialIcon platform={platform} className="size-4 shrink-0" />
                       {platform}
                     </a>
-                  </li>
+                  </Reveal>
                 ))}
               </ul>
             </section>
@@ -103,14 +106,14 @@ export default async function ContactPage() {
 
       <div className="border-t border-border bg-background">
         <div className={`${container} grid items-start gap-10 py-12 sm:py-16 md:grid-cols-2 lg:gap-16 xl:py-20`}>
-          <section aria-labelledby="enquiry-categories-heading">
+          <Reveal as="section" aria-labelledby="enquiry-categories-heading">
             <h2 id="enquiry-categories-heading" className={heading}>Enquiries we welcome</h2>
             <ul className="mt-5 list-disc space-y-3 pl-5 leading-relaxed text-foreground/85 marker:text-accent">
               {enquiryCategories.map((category) => <li key={category}>{category}</li>)}
             </ul>
-          </section>
+          </Reveal>
 
-          <section aria-labelledby="contact-partnership-heading" className="border-t-2 border-gold bg-gold/15 p-5 text-foreground sm:p-8">
+          <Reveal as="section" aria-labelledby="contact-partnership-heading" className="border-t-2 border-gold bg-gold/15 p-5 text-foreground sm:p-8">
             <h2 id="contact-partnership-heading" className={heading}>Interested in Working Together?</h2>
             <p className="mt-4 leading-relaxed text-foreground/85">
               We welcome conversations with organizations, foundations and development partners interested in supporting initiatives that advance women&apos;s empowerment and sustainable community development.
@@ -118,7 +121,7 @@ export default async function ContactPage() {
             <div className="mt-6">
               <ActionLink href={routes.partnerships}>Explore Partnership Opportunities</ActionLink>
             </div>
-          </section>
+          </Reveal>
         </div>
       </div>
 

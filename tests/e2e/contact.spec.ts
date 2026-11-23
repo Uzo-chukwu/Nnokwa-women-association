@@ -102,3 +102,27 @@ test("the Contact page fits mobile, tablet and desktop widths", async ({ page })
     }
   }
 });
+
+test("email and social links stay readable before motion and can be focused immediately", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 375 });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/contact", { waitUntil: "domcontentloaded" });
+  const main = page.getByRole("main");
+  const information = main.getByRole("region", { name: "Contact information" });
+  const social = main.getByRole("region", { name: "Connect with us" });
+  const socialItem = social.getByRole("listitem").last();
+  for (const reveal of [information, socialItem]) {
+    await expect(reveal).toHaveAttribute("data-reveal-state", "pending");
+    await expect(reveal).toHaveCSS("opacity", "1");
+  }
+  const mail = information.getByRole("link", { name: email, exact: true });
+  const facebook = socialItem.getByRole("link", { name: "Facebook", exact: true });
+  await expect(mail).toHaveAttribute("href", `mailto:${email}`);
+  await expect(facebook).toHaveAttribute("href", socialDestinations.Facebook);
+  await mail.focus();
+  await expect(mail).toBeFocused();
+  await expect(information).toHaveAttribute("data-reveal-state", "shown");
+  await facebook.focus();
+  await expect(facebook).toBeFocused();
+  await expect(socialItem).toHaveAttribute("data-reveal-state", "shown");
+});

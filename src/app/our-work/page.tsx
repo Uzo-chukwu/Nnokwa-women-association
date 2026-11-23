@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SdgCommitment } from "@/components/home/sdg-commitment";
 import { WorkActivityCard } from "@/components/home/work-activity-card";
+import { Reveal } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { focusAreas, ourWorkPage } from "@/data/our-work";
 import { ourWork } from "@/data/work-activities";
@@ -18,27 +19,29 @@ export default function OurWorkPage() {
   return (
     <>
       <section aria-labelledby="our-work-heading" className="border-b border-border bg-background">
-        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16 xl:px-12 xl:py-20">
+        <Reveal animateIfVisible className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16 xl:px-12 xl:py-20">
           <span aria-hidden="true" className="mb-5 block h-px w-10 bg-gold" />
           <h1 id="our-work-heading" className="text-[clamp(2.5rem,6vw,4.25rem)] leading-[1.08] font-semibold tracking-[-0.045em] text-foreground">
             {title}
           </h1>
           <p className="mt-5 max-w-[40rem] text-base leading-[1.75] text-foreground/85 sm:text-lg">{introduction}</p>
-        </div>
+        </Reveal>
       </section>
 
       <section aria-labelledby="focus-areas-heading" className="bg-surface">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1fr_2fr] xl:gap-16 xl:px-12 xl:py-24">
-          <h2 id="focus-areas-heading" className={headingClass}>Our Focus Areas</h2>
-          <ul role="list" className="divide-y divide-border border-y border-border">
-            {focusAreas.map(({ id, title, description, goal }) => (
-              <li key={id} className="py-5">
+          <Reveal className="self-start">
+            <h2 id="focus-areas-heading" className={headingClass}>Our Focus Areas</h2>
+          </Reveal>
+          <ul role="list" className="reveal-stagger-group divide-y divide-border border-y border-border">
+            {focusAreas.map(({ id, title, description, goal }, index) => (
+              <Reveal as="li" key={id} staggerIndex={index} className="py-5">
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                   <h3 className="text-xl leading-tight font-semibold text-foreground sm:text-2xl">{title}</h3>
                   <span className="text-xs font-semibold tracking-wider text-accent">SDG {goal}</span>
                 </div>
                 <p className="mt-2 text-base leading-relaxed text-foreground/85">{description}</p>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
@@ -46,16 +49,18 @@ export default function OurWorkPage() {
 
       <section aria-labelledby="community-activities-heading" className="border-t border-border bg-background">
         <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 xl:px-12 xl:py-24">
-          <h2 id="community-activities-heading" className={headingClass}>Our Community Activities</h2>
-          <ul role="list" className="mt-8 grid gap-4 sm:grid-cols-4 sm:gap-5 lg:grid-cols-6">
+          <Reveal>
+            <h2 id="community-activities-heading" className={headingClass}>Our Community Activities</h2>
+          </Reveal>
+          <ul role="list" className="reveal-stagger-group mt-8 grid gap-4 sm:grid-cols-4 sm:gap-5 lg:grid-cols-6">
             {ourWork.activities.map((activity, index) => (
-              <WorkActivityCard key={activity.id} activity={activity} featured={index < 2} showPlaceholder={false} />
+              <WorkActivityCard key={activity.id} activity={activity} featured={index < 2} showPlaceholder={false} revealIndex={index} />
             ))}
           </ul>
         </div>
       </section>
 
-      <SdgCommitment heading="Our SDG Commitment" description={sdgIntroduction} />
+      <SdgCommitment heading="Our SDG Commitment" description={sdgIntroduction} reveal />
 
       <section aria-labelledby="support-our-work-heading" className="bg-brand-panel text-ivory">
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-6 px-5 py-12 sm:px-8 sm:py-16 lg:flex-row lg:items-center lg:justify-between xl:px-12">

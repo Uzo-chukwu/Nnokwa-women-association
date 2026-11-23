@@ -1,4 +1,5 @@
 import { ImageIcon } from "lucide-react";
+import { Reveal } from "@/components/motion/reveal";
 import { CloudinaryImage } from "@/components/ui/cloudinary-image";
 import { cloudinaryConfig } from "@/config/images";
 import type { WorkActivity } from "@/data/work-activities";
@@ -7,10 +8,12 @@ export function WorkActivityCard({
   activity,
   featured,
   showPlaceholder = true,
+  revealIndex,
 }: {
   activity: WorkActivity;
   featured: boolean;
   showPlaceholder?: boolean;
+  revealIndex?: number;
 }) {
   const { heading, description } = activity;
   const image = cloudinaryConfig.cloudName && activity.image?.publicId ? activity.image : undefined;
@@ -18,10 +21,9 @@ export function WorkActivityCard({
     ? "(min-width: 1280px) 580px, (min-width: 640px) 50vw, 100vw"
     : "(min-width: 1280px) 380px, (min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw";
 
-  return (
-    <li
-      className={`group border border-border bg-surface hover:border-gold/80 motion-safe:transition-colors sm:col-span-2 sm:max-lg:last:col-start-2 ${featured ? "lg:col-span-3" : "lg:col-span-2"}`}
-    >
+  const className = `group border border-border bg-surface hover:border-gold/80 motion-safe:transition-colors sm:col-span-2 sm:max-lg:last:col-start-2 ${featured ? "lg:col-span-3" : "lg:col-span-2"}`;
+  const content = (
+    <>
       {(image || showPlaceholder) && (
         <div className="relative grid aspect-[3/2] place-items-center overflow-hidden border-b border-border bg-background">
           {image ? (
@@ -47,6 +49,12 @@ export function WorkActivityCard({
         <h3 className="text-2xl leading-tight font-semibold text-foreground">{heading}</h3>
         <p className="mt-2 max-w-[36rem] text-base leading-relaxed text-foreground/85">{description}</p>
       </div>
-    </li>
+    </>
+  );
+
+  return revealIndex === undefined ? (
+    <li className={className}>{content}</li>
+  ) : (
+    <Reveal as="li" className={className} staggerIndex={revealIndex}>{content}</Reveal>
   );
 }

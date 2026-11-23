@@ -23,6 +23,7 @@
   --color-footer: var(--site-footer);
   --color-primary: var(--color-gold);
   --color-primary-hover: #e6ca89;
+  --color-primary-pressed: #c8a354;
 }
 
 @layer base {

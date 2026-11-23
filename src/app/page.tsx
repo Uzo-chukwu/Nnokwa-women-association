@@ -21,7 +21,7 @@ export default function Home() {
       <AssociationIntro />
       <CorePillars />
       <OurWorkInAction />
-      <SdgCommitment />
+      <SdgCommitment reveal />
       <LeadershipPreview />
       <NewsEventsPreview />
       <DonationSection />

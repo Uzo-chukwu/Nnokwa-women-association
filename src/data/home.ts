@@ -16,6 +16,15 @@ export const homeHero = {
   },
 } as const;
 
+export const homeHeroCloudName = "drbd1c7ub";
+
+export const homeHeroSlides = [
+  { publicId: "hero1_x2tuv0.jpg", position: "center 43%" },
+  { publicId: "hero2_njw1sw.jpg", position: "54% bottom" },
+  { publicId: "hero3_i8gbxv.jpg", position: "60% bottom" },
+  { publicId: "hero4_fewvyi.jpg", position: "64% bottom" },
+] as const;
+
 export const associationIntro = {
   label: "Who we are",
   heading: "Building a stronger community through empowered women.",
