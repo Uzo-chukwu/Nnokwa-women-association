@@ -34,7 +34,7 @@ for (const width of [320, 360, 375, 390, 430]) {
       }
       if (route === "/contact") {
         const information = main.getByRole("region", { name: "Contact information" });
-        const email = await information.getByRole("link", { name: "contact@nnokwawomen.org" }).boundingBox();
+        const email = await information.getByRole("link", { name: "info@nnokwawomen.org" }).boundingBox();
         const copy = await information.getByRole("button", { name: "Copy email address" }).boundingBox();
         if (!email || !copy) throw new Error("Missing Contact touch targets");
         expect(email.height).toBeGreaterThanOrEqual(44);

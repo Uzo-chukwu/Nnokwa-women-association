@@ -8,7 +8,7 @@ export const siteInfo: SiteInfo = {
   footerDescription:
     "Working together to empower women, preserve our cultural heritage and build a healthier, stronger and more sustainable Nnokwa.",
   contact: {
-    email: "contact@nnokwawomen.org",
+    email: "info@nnokwawomen.org",
     emailPlaceholder: "Official email address pending.",
   },
   socialLinks: [

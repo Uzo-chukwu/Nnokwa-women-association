@@ -1,6 +1,6 @@
 import { expect, test, type Locator } from "@playwright/test";
 
-const email = "contact@nnokwawomen.org";
+const email = "info@nnokwawomen.org";
 const socialDestinations = {
   YouTube: "https://youtube.com/@nnokwawomenassociation",
   Instagram: "https://www.instagram.com/nnokwa_women_association/",
